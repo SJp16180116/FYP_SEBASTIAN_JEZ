@@ -1,8 +1,6 @@
 <?php
 /**
- * Database Wrapper.php
- *
- * Class to access the sessions database
+ * SettingsModel.php
  *
  * Author: CF Ingrams
  * Email: <clinton@cfing.co.uk>
