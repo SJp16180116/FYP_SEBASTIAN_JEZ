@@ -1,0 +1,28 @@
+{% extends 'banner.html.twig' %}
+{% block content %}
+
+    <br>
+    <div class="d-flex justify-content-sm-center">
+        <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">Oops! This implementation is not vulnerable to Cross-Site Scripting.</h4>
+            <h7> An unsuccessful XSS attempt</h7>
+            </p>
+            <p>Your input:</p>
+            <div class="text-left"><pre class="prettyprint">{{ info }}
+</pre>
+            </div>
+            <p>Data stored on the database after sanitization:</p>
+            <div class="text-left"><pre class="prettyprint">{{ test }}
+</pre>
+            </div>
+            The JavaScript cannot be executed after the tag removal.
+            <br><br/>
+            <form action="{{ action3 }}" method={{ method }}>
+
+                <button type="submit" class="btn btn-danger" value="Sign in again">Try Again</button>
+            </form>
+
+        </div>
+    </div>
+
+{% endblock %}

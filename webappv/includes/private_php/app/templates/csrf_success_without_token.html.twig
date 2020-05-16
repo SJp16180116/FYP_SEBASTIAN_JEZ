@@ -1,0 +1,16 @@
+{% extends 'banner.html.twig' %}
+{% block content %}
+
+    <br/>
+    <div class="d-flex justify-content-sm-center">
+        <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Well Done!</h4>
+            <p>Successful operation. <b><u>{{ username }}</u></b></p>
+            <form action="{{ action }}" method={{ method }}>
+                <button type="submit" class="btn btn-success" value="messages">Try Again
+                </button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'second_banner.html.twig' %}
+{% block content %}
+    <br>
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Hello, stranger</b>!</h1>
+        <p class="lead">It seems that you are not logged in.</p>
+        <hr class="my-4">
+        <p>Login to have access to the data:</p>
+        <div class="btn-group justify-content-between" role="group">
+            <form action="{{ action }}" method={{ method }}>
+                <button type="submit" class="btn btn-primary" value="Sign in">Sign in here</button>
+            </form>
+        </div>
+        <br/><br/>
+        <p>Or apply for an account:</p>
+        <div class="btn-group justify-content-between" role="group">
+            <form action="{{ action2 }}" method={{ method }}>
+                <button type="submit" class="btn btn-primary" value="">Create a ticket</button>
+            </form>
+        </div>
+        <hr class="my-4">
+        Web App Vulnerabilities 'WebAppV' is a PHP (Slim 3) web application providing both the secure
+        and vulnerable interactive features.
+        The main goals of 'WebAppV' are to
+        better understand the root causes of most common web vulnerabilities and to demonstrate
+        appropriate mitigation strategies. This website is for web developers, technology executives and non-technical
+        users.
+
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'second_banner.html.twig' %}
+{% block content %}
+
+    <br/>
+    <div class="d-flex justify-content-sm-center">
+        <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Well Done!</h4>
+            <p>You created a new account <b><u>{{ sanitised_username }}</u></b></p>
+            <p>Email: <b><u>{{ sanitised_email }}</u></b></p>
+            <form action="{{ action }}" method={{ method }}>
+                <button type="submit" class="btn btn-success" value="messages">Back to admin area
+                </button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

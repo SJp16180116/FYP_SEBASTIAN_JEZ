@@ -1,0 +1,30 @@
+{% extends 'banner.html.twig' %}
+{% block content %}
+
+    <br/>
+    <div class="d-flex justify-content-sm-center">
+        <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Well Done!</h4>
+            <p>A successful SQL Injection attempt <b><u>{{ username }}</u></b></p>
+            <p>Your input:</p>
+            <div class="text-left"><pre class="prettyprint">
+{{ info }}
+</pre>
+            </div>
+            <b>The root causes of the vulnerability:</b></b><br>
+            - No input sanitization techniques<br>
+            - No output encoding<br><br>
+            <b>What happened?</b><br>
+            The malicious javascript payload has been <br>saved in the database <br> and executed afterwards.
+            <br></br>
+
+
+            <form action="{{ action3 }}" method={{ method }}>
+                <button type="submit" class="btn btn-success" value="messages">Try Again
+                </button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
+

@@ -1,0 +1,25 @@
+{% extends 'banner.html.twig' %}
+{% block content %}
+
+    <br>
+    <div class="jumbotron text-center">
+        <h1 class="display-4">All Tickets</h1>
+
+
+        {% for tickets in tickets %}
+            <div class="d-flex justify-content-sm-center">
+                <div class="card" style="width: 32rem;">
+                    <div class="card-header">
+                        Ticket ID: {{ tickets.id }}
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{ tickets.user_ticket }}</li>
+                    </ul>
+                </div>
+            </div>
+
+        {% endfor %}
+        <br>
+    </div>
+
+{% endblock %}

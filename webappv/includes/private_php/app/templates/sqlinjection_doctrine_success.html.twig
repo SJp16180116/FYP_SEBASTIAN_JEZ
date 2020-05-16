@@ -1,0 +1,23 @@
+{% extends 'banner.html.twig' %}
+{% block content %}
+
+    <br/>
+    <div class="d-flex justify-content-sm-center">
+        <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Well Done!</h4>
+            <p>Successful SQL Injection attempt <b></b></p>
+
+            <div class="text-left"><pre class="prettyprint">
+{{ sql_query }}
+
+:username = {{ username }}
+:password = {{ password }}</pre>
+            </div>
+            <form action="{{ action2 }}" method={{ method }}>
+                <button type="submit" class="btn btn-success" value="messages">Try Again
+                </button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

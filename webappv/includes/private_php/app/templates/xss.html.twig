@@ -1,0 +1,270 @@
+{% extends 'banner.html.twig' %}
+{% block content %}
+
+    <style type="text/css">
+        .user {
+            font-weight: bold;
+            color: black;
+        }
+
+        .time {
+            color: gray;
+        }
+
+        .userComment {
+            color: #000;
+        }
+    </style>
+
+    <br>
+    <div class="jumbotron text-center">
+    <h1 class="display-4">Cross-Site Scripting</h1>
+    <p class="lead">{{ role }}</p>
+    <hr class="my-4">
+
+
+    <p class="font-weight-light"> Cross-Site Scripting (XSS) attack consists of "injection"
+        of a malicious script into the website.
+        XSS attacks occur when a malicious actor uses a web application to send malicious code, generally
+        in the form of a browser side script to a different end user. Flaws that allow this attack to
+        succeed are quite widespread and occur anywhere a web application uses input from a user within
+        the output it generates without validating or encoding it.</p>
+    <hr class="my-4">
+    Primary Defenses:
+    <p class="font-weight-light">- Input Validation
+        <br>- Input Sanitization
+        <br>- Output Encoding
+        <br>- Response headers utilization</p>
+    <hr class="my-4">
+
+
+
+    Below you can find three different implementations of the status feature:
+    <p class="font-weight-light">- Only the first two implementations are vulnerable to Cross-Site Scripting.
+        <br>- The third one adopts the most important security measures.</p>
+    <hr class="my-4">
+
+    <div class="alert alert-danger" role="alert">
+        Implementation 1
+        <div class="d-flex justify-content-sm-center">
+
+            <div class="card bg-light mb-4" style="max-width: 18rem;">
+                <div class="card-body">
+
+                    <form action="{{ action6 }}" method="post">
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="info" name="info"
+                                       placeholder="How do you feel today?" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">Post
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
+                aria-expanded="false" aria-controls="collapseExample">
+            #Hint
+        </button>
+        </p>
+        <div class="collapse" id="collapseExample">
+
+            <div class="text-left"><pre class="prettyprint">
+//Input sanitization: No
+//Parameterized queries: No
+//Vulnerable to SQLI: Yes
+//Vulnerable to XSS: Yes
+//Severity: High
+
+public function updateInfo($info, $username)
+{
+        $query_string  = "UPDATE bank ";
+        $query_string .= "SET info = '$info' ";
+        $query_string .= "WHERE username = '$username'";
+        return $query_string;
+}
+
+public function getInfo($username)
+{
+        $query_string  = "SELECT info ";
+        $query_string .= "FROM bank ";
+        $query_string .= "WHERE username = '$username'";
+        return $query_string;
+}</pre>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <div class="alert alert-success" role="alert">
+        Implementation 2
+        <div class="d-flex justify-content-sm-center">
+
+            <div class="card bg-light mb-4" style="max-width: 18rem;">
+                <div class="card-body">
+
+                    <form action="{{ action7 }}" method="post">
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="info1" name="info1"
+                                       placeholder="How do you feel today?" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">Post
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <p>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample1"
+                    aria-expanded="false" aria-controls="collapseExample">
+                #Hint
+            </button>
+        </p>
+        <div class="collapse" id="collapseExample1">
+
+            <div class="text-left"><pre class="prettyprint">
+//Input sanitization: No
+//Parameterized queries: No
+//Vulnerable to SQLI: No
+//Vulnerable to XSS: Yes
+//Severity: High
+
+public function updateInfoPdo()
+{
+        $query_string  = "UPDATE bank ";
+        $query_string .= "SET info = :info ";
+        $query_string .= "WHERE username = :username;";
+        return $query_string;
+}
+
+public function getInfoPdo()
+{
+        $query_string  = "SELECT info ";
+        $query_string .= "FROM bank ";
+        $query_string .= "WHERE username = :username;";
+        return $query_string;
+}</pre>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="alert alert-primary" role="alert">
+        Implementation 3
+        <div class="d-flex justify-content-sm-center">
+
+            <div class="card bg-light mb-4" style="max-width: 18rem;">
+                <div class="card-body">
+
+                    <form action="{{ action8 }}" method="post">
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="info2" name="info2"
+                                       placeholder="How do you feel today?" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">Post
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+        <p>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample2"
+                    aria-expanded="false" aria-controls="collapseExample">
+                #Hint
+            </button>
+        </p>
+        <div class="collapse" id="collapseExample2">
+
+
+            <div class="text-left"><pre class="prettyprint">
+//Input sanitization: No
+//Parameterized queries: No
+//Vulnerable to SQLI: No
+//Vulnerable to XSS: Yes
+//Severity: High
+public static function updateDbDoctrine($queryBuilder, $info, $username)
+{
+        $queryBuilder = $queryBuilder->update('bank')
+            ->set("info", ":info")
+            ->where("username = :username")
+            ->setParameter('info', $info)
+            ->setParameter('username', $username);
+
+        $queryBuilder->execute();
+}
+
+public static function getInfoDoctrine($queryBuilder, $username)
+{
+        $queryBuilder = $queryBuilder->select('info')
+            ->from('bank')
+            ->where("username = :username")
+            ->setParameter('username', $username);
+
+        $outcome = $queryBuilder->execute();
+        $rowCount = $queryBuilder->execute()->rowCount();
+
+        if ($rowCount > 0) {
+            $row = $outcome->fetchAll();
+            $info = $row[0]['info'];
+        } else {
+            $info = 'Invalid_credentials';
+        }
+        return $info;
+}</pre>
+            </div>
+
+        </div>
+    </div>
+    <hr class="my-4">
+    <form action="{{ action9 }}" method="post">
+        <div class="row">
+            <div class="col-md-12">
+                <textarea class="form-control" id="mainComment" name="mainComment" placeholder="Add a public comment..."
+                          cols="30" rows="2" required></textarea><br>
+                <button style="float:middle" class="btn-primary btn" id="addComment">Add Comment</button>
+            </div>
+        </div>
+    </form>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <h2><b>{{ quantity }} Comments</b></h2>
+        </div>
+    </div>
+
+
+    {% for comments in comments %}
+        <hr class="my-4">
+        <div class="user">{{ comments.userid }} <span class="time">{{ comments.date }}</span></div>
+        <div class="userComment">{{ comments.comment }}</div>
+
+    {% endfor %}
+
+{% endblock %}

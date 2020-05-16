@@ -1,0 +1,22 @@
+{% extends 'banner.html.twig' %}
+{% block content %}
+
+    <br>
+    <div class="d-flex justify-content-sm-center">
+        <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">Oops! Something went wrong.</h4>
+            <p>
+                <h7>An unsuccessful SQL Injection attempt</h7>
+            </p>
+            <div class="text-left"><pre class="prettyprint">
+{{ sql_query }}</pre>
+            </div>
+            <b>Hint:</b><br> The SQL statement and the parameters are not separated.
+            <br><br/>
+            <form action="{{ action2 }}" method={{ method }}>
+                <button type="submit" class="btn btn-danger" value="Sign in again">Try Again</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

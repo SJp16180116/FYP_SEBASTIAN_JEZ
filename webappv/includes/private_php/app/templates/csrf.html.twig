@@ -1,0 +1,196 @@
+{% extends 'banner.html.twig' %}
+{% block content %}
+
+    <style type="text/css">
+        .user {
+            font-weight: bold;
+            color: black;
+        }
+
+        .time {
+            color: gray;
+        }
+
+        .userComment {
+            color: #000;
+        }
+    </style>
+
+
+    <br>
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Cross-Site Request Forgery</h1>
+        <p class="lead">{{ role }}</p>
+        <hr class="my-4">
+
+
+        <p class="font-weight-light"> Cross-Site Request Forgery (CSRF) is a web security
+            vulnerability that allows an attacker to induce users to perform actions that they do not
+            intend to perform. A CSRF attack works because browser requests automatically include all
+            cookies including session cookies. Therefore, if the user is authenticated to the site,
+            the site cannot distinguish between legitimate requests and forged requests.</p>
+        <hr class="my-4">
+        Primary Defenses:
+        <p class="font-weight-light">- Anti-CSRF Tokens
+            <br>- Same-Site Flag in Cookies
+        <hr class="my-4">
+        Acknowledgments:
+        <p class="font-weight-light">- It is the <b>company's responsibility</b> to implement robust anti-phishing
+            techniques in the first place.</p>
+        <hr class="my-4">
+
+        Below you can find two different implementations of the banking system:
+        <p class="font-weight-light">- Only the first one is vulnerable to Cross-Site Request Forgery.
+
+            <br>- The second one adopts the most important security measures.</p>
+        <hr class="my-4">
+
+
+        <div class="alert alert-primary" role="alert">
+
+            <div class="d-flex justify-content-sm-center">
+
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                        Online banking
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Balance: {{ balance }}</li>
+                        <li class="list-group-item">Account number: {{ account }}</li>
+                        <li class="list-group-item">Sort code: {{ sortcode }}</li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="alert alert-danger" role="alert">
+            Vulnerable
+            <div class="d-flex justify-content-sm-center">
+
+                <div class="card bg-light mb-4" style="max-width: 18rem;">
+                    <div class="card-body">
+
+                        <form action="{{ action6 }}" method="post">
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" id="user_name" name="user_name"
+                                           placeholder="Username" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <input type="number" class="form-control" id="balance" name="balance"
+                                           placeholder="Amount" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">
+                                        Transfer
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="alert alert-danger" role="alert">
+                Potential phishing email
+                <form action="{{ action6 }}" method={{ method }}>
+                    <button type="submit" class="btn btn-primary" value="">Click here to simulate malicious payload
+                    </button>
+
+                    <input type="hidden" name="balance" id="balance" value="15"/>
+                    <input type="hidden" name="Account" id="Account" value="20820112"/>
+                    <input type="hidden" name="SortCode" id="SortCode" value="203948"/>
+
+                </form>
+            </div>
+
+        </div>
+
+
+        <div class="alert alert-success" role="alert">
+            Not Vulnerable
+            <div class="d-flex justify-content-sm-center">
+
+                <div class="card bg-light mb-4" style="max-width: 18rem;">
+                    <div class="card-body">
+
+                        <form action="{{ action7 }}" method="post">
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" id="user_name" name="user_name"
+                                           placeholder="Username" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <input type="number" class="form-control" id="balance" name="balance"
+                                           placeholder="Amount" required>
+                                </div>
+                            </div>
+                            <input type="hidden" name="token" id="token" value="{{ token }}"/>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">
+                                        Transfer
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-success" role="alert">
+                Potential phishing email
+                <form action="{{ action7 }}" method={{ method }}>
+                    <button type="submit" class="btn btn-primary" value="">Click here to simulate malicious payload
+                    </button>
+
+                    <input type="hidden" name="balance" id="balance" value="15"/>
+                    <input type="hidden" name="Account" id="Account" value="20820112"/>
+                    <input type="hidden" name="SortCode" id="SortCode" value="203948"/>
+                    <input type="hidden" name="token" id="token" value="123"/>
+
+                </form>
+            </div>
+
+        </div>
+
+        <hr class="my-4">
+        <form action="{{ action8 }}" method="post">
+            <div class="row">
+                <div class="col-md-12">
+                <textarea class="form-control" id="mainComment" name="mainComment" placeholder="Add a public comment..."
+                          cols="30" rows="2" required></textarea><br>
+                    <button style="float:middle" class="btn-primary btn" id="addComment">Add Comment</button>
+                </div>
+            </div>
+        </form>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <h2><b>{{ quantity }} Comments</b></h2>
+            </div>
+        </div>
+
+
+        {% for comments in comments %}
+            <hr class="my-4">
+            <div class="user">{{ comments.userid }} <span class="time">{{ comments.date }}</span></div>
+            <div class="userComment">{{ comments.comment }}</div>
+
+        {% endfor %}
+
+
+    </div>
+
+{% endblock %}

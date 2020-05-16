@@ -1,0 +1,31 @@
+{% extends 'banner.html.twig' %}
+{% block content %}
+
+    <br>
+    <div class="d-flex justify-content-sm-center">
+        <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">Oops! This implementation is not vulnerable to SQL Injection.</h4>
+            <p>
+                <h7>An unsuccessful SQL Injection attempt.</h7>
+            </p>
+            Prepared statements prevent parameters to interfere with the SQL statement.
+            <div class="text-left"><pre class="prettyprint">
+{{ sql_query }}
+
+:username = {{ username }}
+:password = {{ password }}</pre>
+            </div>
+            The SQL statement and the parameters (:username, :password) are sent to the database server separately.
+            <div class="text-left"><pre class="prettyprint">
+$this->prepared_statement = $this->db_handle->prepare($query_string);
+$execute_result = $this->prepared_statement->execute($query_parameters);</pre>
+            </div>
+            *Remember to always sanitize the user input.
+            <br></br>
+            <form action="{{ action2 }}" method={{ method }}>
+                <button type="submit" class="btn btn-danger" value="Sign in again">Try Again</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

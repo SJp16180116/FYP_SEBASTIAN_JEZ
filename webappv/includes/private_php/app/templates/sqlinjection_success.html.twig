@@ -1,0 +1,27 @@
+{% extends 'banner.html.twig' %}
+{% block content %}
+
+    <br/>
+    <div class="d-flex justify-content-sm-center">
+        <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Well Done!</h4>
+            <p>A successful SQL Injection attempt <b></b></p>
+
+            <div class="text-left"><pre class="prettyprint">
+{{ sql_query }}</pre>
+            </div>
+            <b>The root causes of the vulnerability:</b></b><br>
+            - No input validation<br>
+            - No parameterized queries<br><br>
+            <b>What happened?</b><br>
+            As you can see above, the SQL statement and the parameters are not separated.<br>
+            Therefore, the malicious injection can change the query.
+            <br></br>
+            <form action="{{ action2 }}" method={{ method }}>
+                <button type="submit" class="btn btn-success" value="messages">Try Again
+                </button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

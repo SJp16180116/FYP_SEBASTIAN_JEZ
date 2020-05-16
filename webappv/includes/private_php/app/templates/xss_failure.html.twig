@@ -1,0 +1,21 @@
+{% extends 'banner.html.twig' %}
+{% block content %}
+
+    <br>
+    <div class="d-flex justify-content-sm-center">
+        <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">Oops! Something went wrong.</h4>
+            <h7> An unsuccessful Cross-Site Scripting attempt</h7>
+            </p>
+            <div class="text-left"><pre class="prettyprint">
+{{ info }}
+</pre>
+            </div>
+            <b>Hint:</b> No input sanitization<br></br>
+            <form action="{{ action3 }}" method={{ method }}>
+                <button type="submit" class="btn btn-danger" value="Sign in again">Try Again</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'banner.html.twig' %}
+{% block content %}
+
+    <br>
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Register a new user</h1>
+        <div class="d-flex justify-content-sm-center">
+
+            <div class="card bg-light mb-4" style="max-width: 25rem;">
+                <div class="card-body">
+
+                    <form action="{{ action6 }}" method="post">
+                        <input type="hidden" name="token" id="token" value="{{ token }}"/>
+                        <input type="hidden" name="{{ namekey }}" value="{{ name }}">
+                        <input type="hidden" name="{{ valuekey }}" value="{{ value }}">
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="username" name="username"
+                                       placeholder="Username" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <input type="password" class="form-control" id="password" name="password"
+                                       placeholder="Password" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <input type="email" class="form-control" id="email" name="email"
+                                       placeholder="Email address" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="role" name="role"
+                                       placeholder="Role" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">Register a
+                                    new user
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

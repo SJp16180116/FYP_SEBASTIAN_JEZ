@@ -1,0 +1,26 @@
+{% extends 'second_banner.html.twig' %}
+{% block content %}
+
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <h2><b>Customer Account Application Form</b></h2>
+        </div>
+    </div>
+    <form action="{{ action2 }}" method="post">
+        <div class="row">
+            <div class="col-md-12">
+                <textarea class="form-control" id="mainComment" name="ticket"
+                          placeholder="Please provide your name, department, role and email address." cols="30" rows="5"
+                          required></textarea><br>
+                <button style="float:middle" class="btn-primary btn" id="ticket">Submit a Ticket</button>
+            </div>
+        </div>
+        <br>
+    </form>
+    <form action="{{ action1 }}" method={{ method }}>
+        <button type="submit" class="btn btn-primary" value="Sign in again">Go Back</button>
+    </form>
+    <br>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'second_banner.html.twig' %}
+{% block content %}
+
+    <br>
+    <div class="jumbotron text-center">
+        <h1 class="display-6">You have securely logged out</b>.</h1>
+        <hr class="my-4">
+        <p>If you want to use our service again:</p>
+        <div class="btn-group justify-content-between" role="group">
+            <form action="{{ action }}" method={{ method }}>
+                <button type="submit" class="btn btn-primary" value="Sign in">Sign in here</button>
+            </form>
+        </div>
+        <br/><br/>
+        Thank you for using our website.
+        <hr class="my-4">
+    </div>
+
+{% endblock %}

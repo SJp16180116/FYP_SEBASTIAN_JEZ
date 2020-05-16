@@ -1,0 +1,44 @@
+{% extends 'layout.html.twig' %}
+{% block title %}{{ page_title }}{% endblock %}
+{% block banner %}
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+        <div class="d-flex w-50 order-0">
+            <a class="navbar-brand mr-1" href="#">Web App Vulnerabilities</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse justify-content-center order-2" id="collapsingNavbar">
+            <ul class="navbar-nav">
+                <form action="{{ action1 }}" method={{ method }}>
+                    <li class="nav-item active">
+                        <button type="submit" class="btn btn-primary" value="Sign in">home</button>
+                    </li>
+                </form>
+                <form action="{{ action2 }}" method={{ method }}>
+                    <li class="nav-item active">
+                        <button type="submit" class="btn btn-primary" value="Sign in">SQLI</button>
+                    </li>
+                </form>
+                <form action="{{ action3 }}" method={{ method }}>
+                    <li class="nav-item">
+                        <button type="submit" class="btn btn-primary" value="Sign in">XSS</button>
+                    </li>
+                </form>
+                <form action="{{ action4 }}" method={{ method }}>
+                    <li class="nav-item active">
+                        <button type="submit" class="btn btn-primary" value="Sign in">CSRF</button>
+                    </li>
+                </form>
+                <form action="{{ action5 }}" method={{ method }}>
+                    <li class="nav-item active">
+                        <button type="submit" class="btn btn-primary" value="Sign in">logout</button>
+                    </li>
+                </form>
+            </ul>
+        </div>
+        <span class="navbar-text small text-truncate mt-1 w-50 text-right order-1 order-md-last">Sebastian Jez</span>
+    </nav>
+
+{% endblock %}

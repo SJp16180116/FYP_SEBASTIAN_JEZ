@@ -1,0 +1,43 @@
+{% extends 'banner.html.twig' %}
+{% block content %}
+
+    <br>
+    <div class="d-flex justify-content-sm-center">
+        <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">Oops! This implementation is not vulnerable to SQL Injection.</h4>
+            <p>
+                <h7>An unsuccessful SQL Injection attempt</h7>
+            </p>
+
+            Prepared statements prevent parameters interfering with the SQL statement.
+            <div class="text-left"><pre class="prettyprint">
+{{ sql_query }}
+
+//Before validation:
+:username = {{ username }}
+:password = {{ password }}
+
+//After validation:
+:username = {{ clean_username }}
+:password = {{ clean_password }}</pre>
+            </div>
+            The SQL statement and the parameters (:username, :password) are sent to the database server separately.
+            <div class="text-left"><pre class="prettyprint">
+$queryBuilder = $queryBuilder->select('username')
+    ->addSelect('password')
+    ->from('bank')
+    ->where("username = :username")
+    ->andWhere("password = :password")
+    ->setParameter('username', $username)
+    ->setParameter('password', $password);
+
+$outcome = $queryBuilder->execute();</pre>
+            </div>
+
+            <form action="{{ action2 }}" method={{ method }}>
+                <button type="submit" class="btn btn-danger" value="Sign in again">Try Again</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
